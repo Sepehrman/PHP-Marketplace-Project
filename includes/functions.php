@@ -5,9 +5,17 @@ define('FILE_SIZE_LIMIT', 4000000);
 
 define('DB_HOST',     'localhost');
 define('DB_PORT',     '3308');
+
 define('DB_USERNAME', 'root');
+
 define('DB_PASSWORD', '');
+
 define('DB_DATABASE', 'comp3015');
+
+use Socketlabs\SocketLabsClient;
+use Socketlabs\Message\BasicMessage;
+use Socketlabs\Message\EmailAddress;
+include_once ("./vendor/autoload.php");
 
 
 function establishDBConnection() {
@@ -30,6 +38,53 @@ function setItemInaccessible($id) {
 }
 
 
+function sendEmail($email, $message) {
+//or if using composer: include_once ('./vendor/autoload.php');
+
+
+        // If user is not verified
+        $serverId = 40434;
+        $injectionApiKey = "Df64Ege8M2Qbk5HZw39L";
+
+        $client = new SocketLabsClient($serverId, $injectionApiKey);
+
+        $message = new BasicMessage();
+        $message->subject = "Marketplace Registration Confirmation";
+        $message->htmlBody = "<html>$message</html>";
+        $message->plainTextBody = "This is to confirm that";
+        $message->from = new EmailAddress("NoReply@Marketplace.com");
+        $message->addToAddress($email);
+
+        $response = $client->send($message);
+}
+
+
+
+
+
+function sendConfirmationEmail($userData) {
+
+    // If user is not verified
+    $serverId = 40434;
+    $injectionApiKey = "Df64Ege8M2Qbk5HZw39L";
+
+    $client = new SocketLabsClient($serverId, $injectionApiKey);
+
+    $message = new BasicMessage();
+
+    $username = findFullnameFromEmail(trim($_POST['email']), trim($_POST['password']));
+
+    $message->subject = "Marketplace Registration Confirmation";
+    $name = $_POST['first_name'];
+
+    $message->htmlBody = "<html>Thank you for registering to Marketplace $name. This is to confirm that you have successfully registered for Marketplace and can now use what we have to offer</html>";
+    $message->plainTextBody = "This is to confirm that";
+
+    $message->from = new EmailAddress("NoReply@Marketplace.com");
+    $message->addToAddress($userData['email']);
+
+    $response = $client->send($message);
+}
 
 
 function searchForExistingProducts($string) {
@@ -122,6 +177,8 @@ function getAllProducts() {
 }
 
 
+
+
 function findProductGivenID($id) {
     $link = establishDBConnection();
     $query = 'SELECT * FROM products WHERE id = "'. $id .'"';
@@ -173,8 +230,9 @@ function insertProductOntoDB($data, $file) {
     $filepath = "products/" . $uniqueFileName;
     move_uploaded_file($file['picture']['tmp_name'], $filepath);
 
+
     $connection = establishDBConnection();
-    $query = 'INSERT INTO products (title, price, description, picture, author, author_email, downvotes_count, time_added, is_accessible) VALUES("'. $title . '","' . $price. '","' . $description . '","' . $uniqueFileName . '","' . $author . '","' . $authorEmail . '","' . 0 . '","' . time() . '","' . 1 . '")';
+    $query = 'INSERT INTO products (title, price, description, picture, author, author_email, downvotes_count, time_added) VALUES("'. $title . '","' . $price. '","' . $description . '","' . $uniqueFileName . '","' . $author . '","' . $authorEmail . '","' . 0 . '","' . date("M j Y") . '")';
     return mysqli_query($connection, $query);
 }
 
@@ -199,12 +257,6 @@ function hasValidInputsLogin($data)
         $email = trim(ucfirst(strtolower($data['email'])));
         $password = trim($data['password']);
         $verify = trim($data['verify_pass']);
-
-
-//        $isvalid = true;
-
-//        $valid = true;
-
 
         if (!preg_match("/^[A-Z]+$/i", $firstname)) {
             setErrorCookie("Firstname should only include Letters");
@@ -243,6 +295,16 @@ function findFullnameFromEmail($email, $pass) {
 
     return (mysqli_fetch_array($results))[0];
 }
+
+function findEmailGivenProduct($id) {
+    $link = establishDBConnection();
+    $query   = 'select author_email from products where id = "'.$id.'"';
+    $results = mysqli_query($link, $query);
+    return (mysqli_fetch_array($results))[0];
+}
+
+
+
 
 
 

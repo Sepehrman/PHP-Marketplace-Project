@@ -4,8 +4,6 @@
 include "includes/functions.php";
 
 session_start();
-
-
 ?>
 
 <!DOCTYPE html>
@@ -16,6 +14,25 @@ session_start();
     <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="css/style.css" rel="stylesheet">
 </head>
+<style>
+    #loginheader {
+        color: white;
+        font-family: "Courier New";
+
+    }
+
+    .panel > .panel-heading {
+        background-image: none;
+        background-color: skyblue;
+        color: black;
+
+    }
+
+
+
+</style>
+
+
 <body>
 
 <div id="wrapper">
@@ -29,8 +46,8 @@ session_start();
 
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
-                <h1 class="login-panel text-center text-muted">
-                    COMP 3015 Final Project
+                <h1 style="font-family: 'Courier New'; color: white;" class="login-panel text-center text-muted">
+                    <b>Marketplace</b>
                 </h1>
 
                 <?php
@@ -39,7 +56,7 @@ session_start();
 
                 if (isset($_SESSION['sessionUser'])) {
                     $username = preg_split("/ /", $_SESSION['sessionUser'])[0];
-                    echo "<h3 class='text-center text-muted'> Welcome
+                    echo "<h3 id='loginheader' class='text-center text-muted'> Welcome
                     $username</h3>";
                 }
 
@@ -73,19 +90,24 @@ session_start();
         ?>
 
 
-        <div class="row">
-            <div class="col-md-3">
-                <h2 class="login-panel text-muted">
-                    Recently Viewed
-                </h2>
-                <hr/>
-            </div>
-        </div>
+
 
 
         <div class="row">
             <?php
             $latestViewed = array_reverse(findAllRecentlyViewed($_COOKIE));
+            if (!empty($latestViewed)) {
+                echo '<div class="row">
+            <div class="col-md-3">
+                <h2 class="login-panel text-muted">
+                Recently Viewed
+                </h2>
+                <hr/>
+            </div>
+        </div>';
+
+            }
+
 
             if (isset($_SESSION['userLogged'])) {
                 $allDownvotes = json_decode(getAllDownvotes($_SESSION['userEmail']));
@@ -140,7 +162,7 @@ session_start();
 
         <div class="row">
             <div class="col-md-3">
-                <h2 class="login-panel text-muted">
+                <h2 style="color: white; font-family: 'Courier New'" class="login-panel text-muted">
                     Items For Sale
                 </h2>
                 <hr/>
@@ -227,7 +249,7 @@ session_start();
 
                             if (isset($_SESSION['userEmail']) && $_SESSION['userEmail'] == $product['author_email']) {
                                 echo '<span class="pull-right text-muted">
-                            <a class="" href="delete.php?id=' . $product['id'] . '" data-toggle="tooltip" title="Delete item">
+                            <a class="" href="delete.php?id=' . $product['id'] . '&filename=' . $product['picture'] . '" data-toggle="tooltip" title="Delete item">
                                 <i class="fa fa-trash"></i>
                             </a>
                         </span>';
@@ -260,13 +282,9 @@ session_start();
 
 
             } else {
-
                 $products = getAllProducts();
                 foreach ($products as $product) {
-
-                    $hourPassed = time() - $product['time_added'] >= 3600;
                     if ($product['downvotes_count'] <= 5) {
-                        if (!$hourPassed) {
 
                             echo '<div class="col-md-3">';
                             if (isset($_SESSION['userLogged'])) {
@@ -294,7 +312,7 @@ session_start();
 
                             if (isset($_SESSION['userEmail']) && $_SESSION['userEmail'] == $product['author_email']) {
                                 echo '<span class="pull-right text-muted">
-                            <a class="" href="delete.php?id=' . $product['id'] . '" data-toggle="tooltip" title="Delete item">
+                            <a class="" href="delete.php?id=' . $product['id'] . '&filename=' . $product['picture'] . '" data-toggle="tooltip" title="Delete item">
                                 <i class="fa fa-trash"></i>
                             </a>
                         </span>';
@@ -306,8 +324,11 @@ session_start();
                                 <img class="img-rounded img-thumbnail" src="products/' . $product['picture'] . '"/>
                             </a>
                         </p>
-                        <p class="text-muted text-justify">
+                        <p  class="text-muted text-justify">
                                 ' . $product['description'] . '
+                        </p>
+                        <p style="color: gray; font-size: 10px" class="text-muted text-justify">
+                                Added On: ' . $product['time_added'] . '
                         </p>';
                             if (isset($_SESSION['userLogged'])) {
                                 echo '
@@ -318,20 +339,13 @@ session_start();
                             echo '
                     </div>
                     <div class="panel-footer ">
-                        <span><a href="mailto:' . $product['author_email'] . '" data-toggle="tooltip" title="Email seller"><i class="fa fa-envelope"></i> ' . $product['author'] . '</a></span>
-                        <span class="pull-right">' . $product['price'] . '</span>
+
+
                     </div>
                 </div>
             </div>';
-                        } else {
-                            if (isset($_SESSION['userLogged'])) {
-                                updatePins($_SESSION['userEmail'], json_encode([]));
-                            }
-                            setItemInaccessible($product['id']);
+
                         }
-                    } else {
-                        setItemInaccessible($product['id']);
-                    }
                 }
 
             }
@@ -341,21 +355,9 @@ session_start();
         </div> <!-- END OF ROW -->
 
 
+
+
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 <div id="login" class="modal fade" tabindex="-1" role="dialog">
@@ -464,6 +466,7 @@ session_start();
 </div><!-- /.modal -->
 
 </body>
+
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script>
@@ -487,6 +490,10 @@ session_start();
     $(function () {
         $('[data-toggle="tooltip"]').tooltip()
     })
+
+
+
+
 </script>
 </html>
 

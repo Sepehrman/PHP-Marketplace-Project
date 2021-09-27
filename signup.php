@@ -10,7 +10,7 @@ if (hasValidInputsSignup($_POST) == true) {
     $username = findFullnameFromEmail(trim($_POST['email']), trim($_POST['password']));
     $_SESSION['sessionUser'] = $username;
     $_SESSION['userEmail'] = $_POST['email'];
-    echo "is true";
+    sendConfirmationEmail($_POST);
     header("Location: index.php");
     exit();
 } else {

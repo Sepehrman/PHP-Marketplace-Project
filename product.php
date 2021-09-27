@@ -10,13 +10,7 @@ $productDetails = findProductGivenID($_GET['id']);
 $latestViewed = findAllRecentlyViewed($_COOKIE);
 
 $cookies = findAllRecentlyViewed($_COOKIE);
-$productAccessible = $productDetails['is_accessible'];
 
-if (!$productAccessible) {
-    setErrorCookie("This product is no longer accessible");
-    header('Location: index.php');
-    exit();
-}
 
 
 

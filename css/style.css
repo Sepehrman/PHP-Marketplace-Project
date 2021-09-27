@@ -1,17 +1,20 @@
 body {
-    background-color: #f8f8f8;
-    background-image: url("../img/greyzz.png");
+    background-color: #56bdb9;
 }
 
 #wrapper {
     width: 100%;
 }
 
+
+
 #page-wrapper {
     padding: 0 15px;
     min-height: 568px;
     background-color: #fff;
 }
+
+
 
 @media(min-width:768px) {
     #page-wrapper {
