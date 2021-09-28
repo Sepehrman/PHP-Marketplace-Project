@@ -145,18 +145,17 @@ session_start();
                         </a>';
                     }
 
+                    $user = json_encode($productInfo['author']);
                     echo '
                     </div>
                     <div class="panel-footer ">
-                        <span> <a href="mailto:' . $productInfo['author_email'] . '" data-toggle="tooltip" title="Email seller"><i class="fa fa-envelope"></i> ' . $productInfo['author'] . '</a></span>
+                        <span> <a style="cursor: pointer" onclick="abc(' . $productInfo['id'] . ');" data-toggle="modal" data-target="#aCoolModal" data-toggle="tooltip" title="Email seller"><i class="fa fa-envelope"></i> ' . preg_split("/ /", $_SESSION['sessionUser'])[0] . '</a></span>
                         <span class="pull-right">' . $productInfo['price'] . '</span>
                     </div>
                 </div>
             </div>';
             }
             ?>
-
-
 
         </div>
 
@@ -273,7 +272,7 @@ session_start();
                             echo '
                     </div>
                     <div class="panel-footer ">
-                        <span><a href="mailto:' . $product['author_email'] . '" data-toggle="tooltip" title="Email seller"><i class="fa fa-envelope"></i> ' . $product['author'] . '</a></span>
+                        <span> <a style="cursor: pointer" data-toggle="modal" data-target="#newItem" data-toggle="tooltip" title="Email seller"><i class="fa fa-envelope"></i> ' . preg_split("/ /", $productInfo['author'])[0] . '</a></span>
                         <span class="pull-right">' . $product['price'] . '</span>
                     </div>
                 </div>
@@ -339,8 +338,8 @@ session_start();
                             echo '
                     </div>
                     <div class="panel-footer ">
-
-
+                        <span> <a style="cursor: pointer" onclick="abc(' . $product['id'] . ');" data-toggle="modal" data-target="#aCoolModal" data-toggle="tooltip" title="Email seller"><i class="fa fa-envelope"></i> ' . preg_split("/ /", $_SESSION['sessionUser'])[0] . '</a></span>
+                        <span class="pull-right">' . $product['price'] . '</span>
                     </div>
                 </div>
             </div>';
@@ -426,6 +425,8 @@ session_start();
 </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
+
+
 <div id="signup" class="modal fade" tabindex="-1" role="dialog">
 <div class="modal-dialog" role="document">
     <form role="form" method="post" action="signup.php">
@@ -465,6 +466,42 @@ session_start();
 </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
+
+
+
+
+    <div id="aCoolModal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <form role="form" method="post" action="messenger.php">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">
+                            Email Seller
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Product ID</label>
+                            <input id="modal-id" name="prodID" class="form-control disabled" disabled>
+                            <input id="productID" name="ID" value="" type="hidden">
+                        </div>
+                        <div class="form-group">
+                            <label>Message:</label>
+                            <textarea rows="5" name="message" class="form-control disabled"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="submit" class="btn btn-primary" value="Send Message!"/>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </form>
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+
+
 </body>
 
 <script src="js/jquery.min.js"></script>
@@ -490,6 +527,21 @@ session_start();
     $(function () {
         $('[data-toggle="tooltip"]').tooltip()
     })
+
+
+
+
+    function abc(id) {
+        // var id   = $("#"+id+"-id").text();
+        // var name = $("#"+id+"-country-name").text();
+        $("#productID").val(id);
+        $("#modal-id").val(id);
+
+
+        // $("#modal-country-name").val(name);
+
+        // $('#aCoolModal').modal('toggle')
+    }
 
 
 

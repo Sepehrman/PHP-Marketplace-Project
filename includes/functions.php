@@ -38,24 +38,22 @@ function setItemInaccessible($id) {
 }
 
 
-function sendEmail($email, $message) {
-//or if using composer: include_once ('./vendor/autoload.php');
+function sendEmail($emailFrom, $emailTo, $contentMessage) {
 
+    // If user is not verified
+    $serverId = 40434;
+    $injectionApiKey = "Df64Ege8M2Qbk5HZw39L";
 
-        // If user is not verified
-        $serverId = 40434;
-        $injectionApiKey = "Df64Ege8M2Qbk5HZw39L";
+    $client = new SocketLabsClient($serverId, $injectionApiKey);
+    $message = new BasicMessage();
+    $message->subject = "Marketplace Messenger";
+    $message->htmlBody = "<html>$contentMessage<br><br><b>Marketplace Inc.</b></html>";
+    $message->plainTextBody = "This is to confirm that";
+    $message->from = new EmailAddress($emailFrom);
+    $message->addToAddress($emailTo);
 
-        $client = new SocketLabsClient($serverId, $injectionApiKey);
-
-        $message = new BasicMessage();
-        $message->subject = "Marketplace Registration Confirmation";
-        $message->htmlBody = "<html>$message</html>";
-        $message->plainTextBody = "This is to confirm that";
-        $message->from = new EmailAddress("NoReply@Marketplace.com");
-        $message->addToAddress($email);
-
-        $response = $client->send($message);
+    $response = $client->send($message);
+    return $message;
 }
 
 

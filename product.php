@@ -33,6 +33,18 @@ setcookie('recents'.$_GET['id'], $_GET['id'], time() + 3600);
     <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="css/style.css" rel="stylesheet">
 </head>
+
+<style>
+    #loginheader {
+        color: white;
+        font-family: "Courier New";
+
+    }
+
+
+</style>
+
+
 <body>
 
 <div id="wrapper">
@@ -46,8 +58,8 @@ setcookie('recents'.$_GET['id'], $_GET['id'], time() + 3600);
 
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
-                <h1 class="login-panel text-center text-muted">
-                    COMP 3015 Final Project
+                <h1 id="loginheader" class="login-panel text-center text-muted">
+                    Marketplace
                 </h1>
                 <hr/>
             </div>
@@ -70,10 +82,15 @@ setcookie('recents'.$_GET['id'], $_GET['id'], time() + 3600);
                         <p>
                             <img class="img-rounded img-thumbnail" src="products/<?php echo $productDetails['picture'] ;?>"/>
                         </p>
+                        <p style="color: gray; font-size: 10px" class="text-muted text-justify">
+                            Added On: <?php echo $productDetails['time_added'] ?>
+                        </p>'
                         <p class="text-muted text-justify">
                             <?php echo $productDetails['description'] ;?>
                         </p>
                     </div>
+
+
                     <div class="panel-footer ">
                         <span><a href="mailto:<?php echo $productDetails['author_email'] ;?>"><i class="fa fa-envelope"></i> <?php echo $productDetails['author'] ;?></a></span>
                         <span class="pull-right"> <?php echo $productDetails['price'] ;?></span>
