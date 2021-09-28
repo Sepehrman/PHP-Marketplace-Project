@@ -3,14 +3,20 @@
 define('SALT', 'salting_for_the_sake_of_hash');
 define('FILE_SIZE_LIMIT', 4000000);
 
-define('DB_HOST',     'localhost');
+$cleardbUrl = parse_url(getenv("CLEARDB_DATABASE_URL"));
+
+define('DB_HOST',     $cleardbUrl['host']);
 define('DB_PORT',     '3308');
 
-define('DB_USERNAME', 'root');
+define('DB_USERNAME', $cleardbUrl['user']);
 
-define('DB_PASSWORD', '');
+define('DB_PASSWORD', $cleardbUrl['pass']);
 
-define('DB_DATABASE', 'comp3015');
+define('DB_DATABASE', substr($cleardbUrl['path'], 1));
+
+$activeGroup = "default";
+$queryBuilder = TRUE;
+
 
 use Socketlabs\SocketLabsClient;
 use Socketlabs\Message\BasicMessage;
@@ -19,7 +25,7 @@ include_once ("./vendor/autoload.php");
 
 
 function establishDBConnection() {
-    $connected = mysqli_connect(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DATABASE, DB_PORT);
+    $connected = mysqli_connect(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
     if (!$connected) {
         echo mysqli_connect_error();
         exit;
