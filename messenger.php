@@ -19,7 +19,5 @@ echo "from " . $_SESSION['userEmail'];
 echo "to " . $_POST['ID'];
 echo "message " . $message;
 
-echo var_dump(sendEmail($_SESSION['userEmail'], $receiverEmail, $message));
-
-//header("Location: index.php");
-//exit();
+header("Location: index.php");
+exit();
