@@ -1,0 +1,7 @@
+{
+    "require": {
+        "socketlabs/email-delivery": "^1.2",
+        "twbs/bootstrap": "4.3.1",
+      "ext-mysqli": "*"
+    }
+}
