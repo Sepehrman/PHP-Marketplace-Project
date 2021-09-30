@@ -47,7 +47,7 @@ session_start();
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
                 <h1 style="font-family: 'Courier New'; color: white;" class="login-panel text-center text-muted">
-                    <b>Marketplace</b>
+                    <span> <img style="height: 100px" src="img/cart.png"><b>Marketplace</b></span>
                 </h1>
 
                 <?php
@@ -338,7 +338,7 @@ session_start();
                             echo '
                     </div>
                     <div class="panel-footer ">
-                        <span> <a style="cursor: pointer" onclick="abc(' . $product['id'] . ');" data-toggle="modal" data-target="#aCoolModal" data-toggle="tooltip" title="Email seller"><i class="fa fa-envelope"></i> ' . preg_split("/ /", $_SESSION['sessionUser'])[0] . '</a></span>
+                        <span> <a style="cursor: pointer" onclick="abc(' . $product['id'] . ');" data-toggle="modal" data-target="#aCoolModal" data-toggle="tooltip" title="Email seller"><i class="fa fa-envelope"></i> ' . preg_split("/ /", $product['author'])[0] . '</a></span>
                         <span class="pull-right">' . $product['price'] . '</span>
                     </div>
                 </div>
