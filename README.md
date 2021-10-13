@@ -1,5 +1,6 @@
 # Marketplace
 Marketplace is a web application that allows users to signup and register for the application with the ability to post products online with title, price, and description.
+It allows direct Emailing to other sellers using the SocketLabs API
 
 ## Installation
 
