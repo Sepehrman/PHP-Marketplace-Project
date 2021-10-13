@@ -5,7 +5,7 @@ Marketplace is a web application that allows users to signup and register for th
 
 clone the repo using:
 ```bash
-
+git clone https://github.com/Sepehrman/PHP-Marketplace-Project.git
 ```
 
 ## Usage
