@@ -3,11 +3,9 @@ Marketplace is a web application that allows users to signup and register for th
 
 ## Installation
 
-clone the repo using
-``git clone ``
-
+clone the repo using:
 ```bash
-pip install foobar
+
 ```
 
 ## Usage
