@@ -30,7 +30,7 @@ CREATE TABLE products (id int primary key auto_increment, title varchar(255), pr
 
 
 
-| [![VideoBlocks](https://d1ow200m9i3wyh.cloudfront.net/img/assets/videoblocks/images/logo.png)](http://videoblocks.com)  | [![AudioBlocks](https://dtyn3c8zjrx01.cloudfront.net/img/assets/audioblocks/images/logo.png)](http://audioblocks.com) | [![GraphicStock](http://www.graphicstock.com/images/logo.jpg)](http://graphicstock.com) |
+| [![VideoBlocks](https://user-images.githubusercontent.com/59620701/137555057-722868a3-db36-40c3-81ca-be9de0900e44.png)](http://videoblocks.com)  | [![AudioBlocks](https://user-images.githubusercontent.com/59620701/137555315-b17be1e3-956c-4ef6-89d9-11d1b1224d84.png)](http://audioblocks.com) | 
 |:---:|:---:|:---:|
 | http://videoblocks.com | http://audioblocks.com | http://graphicstock.com |
 
