@@ -10,7 +10,10 @@ git clone https://github.com/Sepehrman/PHP-Marketplace-Project.git
 ```
 
 2. Make Sure you have a Local Development Server Installed on your Machine (Wamp, Xamp, & etc.) and create the following tables on your mySQL Server
-```bash
+```SQL
+CREATE TABLE user (id int primary key auto_increment, firstname varchar(255), lastname varchar(255), email varchar(255), password varchar(255), pinned LONGTEXT, downvotes LONGTEXT);
+
+CREATE TABLE products (id int primary key auto_increment, title varchar(255), price decimal(6,2), description MEDIUMTEXT, picture varchar(255), author varchar(255), author_email varchar(255), downvotes_count int, time_added varchar(255));
 
 ```
 
