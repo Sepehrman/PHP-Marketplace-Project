@@ -24,13 +24,18 @@ CREATE TABLE products (id int primary key auto_increment, title varchar(255), pr
 
 ![image](https://user-images.githubusercontent.com/59620701/137554616-924e7eae-59b2-429c-9d0f-05d3226788ec.png)
 
-## Signup, Login & Upload Products for Sale
+## Signup Users
 
 <p float="left">
-  <img src="https://user-images.githubusercontent.com/59620701/137555057-722868a3-db36-40c3-81ca-be9de0900e44.png" width="500" />
-  <img src="https://user-images.githubusercontent.com/59620701/137555315-b17be1e3-956c-4ef6-89d9-11d1b1224d84.png" width="500" /> 
-  <img src="https://user-images.githubusercontent.com/59620701/137557573-54dd579a-3e89-4d89-928a-a54ba2410e25.png" width="500"/>
+  <img src="/img1.png" width="100" />
+  <img src="/img2.png" width="100" /> 
+  <img src="/img3.png" width="100" />
 </p>
+
+![image](https://user-images.githubusercontent.com/59620701/137555057-722868a3-db36-40c3-81ca-be9de0900e44.png) | ![image](https://user-images.githubusercontent.com/59620701/137555315-b17be1e3-956c-4ef6-89d9-11d1b1224d84.png)
+
+
+![image](https://user-images.githubusercontent.com/59620701/137558250-f8e1c869-750c-4daf-84ee-ad874bac6358.png)
 
 
 
