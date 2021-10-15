@@ -33,15 +33,13 @@ CREATE TABLE products (id int primary key auto_increment, title varchar(255), pr
 </p>
 
 
-## Delete, Rate, & view Products for Sale!
+## Delete, Rate, & view Products and Message the Sellers!
 <p float="left">
   <img src="https://user-images.githubusercontent.com/59620701/137558518-2f384401-020f-4f57-825e-422105e58827.png" width="500"/>
   <img src="https://user-images.githubusercontent.com/59620701/137558612-dbe9e243-ade3-46a4-a0f0-3c46f10a7cd2.png" width="500"/>
   <img src="https://user-images.githubusercontent.com/59620701/137558250-f8e1c869-750c-4daf-84ee-ad874bac6358.png" width="500"/>
-
+  <img src="https://user-images.githubusercontent.com/59620701/137558754-6da74de4-77a2-45ea-a69c-78e3532c50e0.png" width="500"/>
 </p>
-
-
 
 
 ## Contributing
