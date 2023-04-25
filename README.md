@@ -16,9 +16,17 @@ CREATE TABLE user (id int primary key auto_increment, firstname varchar(255), la
 CREATE TABLE products (id int primary key auto_increment, title varchar(255), price decimal(6,2), description MEDIUMTEXT, picture varchar(255), author varchar(255), author_email varchar(255), downvotes_count int, time_added varchar(255));
 
 ```
+3. Change the Database connection string under /includes/functions.php:
 
+```bash
+8   define('DB_HOST',     '');
+9   define('DB_PORT',     '');
+10  define('DB_USERNAME', '');
+11  define('DB_PASSWORD', '');
+12  define('DB_DATABASE', '');
+```
 
-3. Move the project to the Development Folder and run
+4. Move the project to the Development Folder and run
 
 ## Application Startup
 
