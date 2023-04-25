@@ -5,11 +5,11 @@ define('FILE_SIZE_LIMIT', 4000000);
 
 $cleardbUrl = parse_url(getenv("CLEARDB_DATABASE_URL"));
 
-define('DB_HOST',     'containers-us-west-193.railway.app');
-define('DB_PORT',     '6171');
-define('DB_USERNAME', 'root');
-define('DB_PASSWORD', '4vsqglUNrazr8S7DF2XJ');
-define('DB_DATABASE', 'railway');
+define('DB_HOST',     '');
+define('DB_PORT',     '');
+define('DB_USERNAME', '');
+define('DB_PASSWORD', '');
+define('DB_DATABASE', '');
 
 
 use Socketlabs\SocketLabsClient;
